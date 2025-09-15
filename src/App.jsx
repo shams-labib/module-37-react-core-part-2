@@ -1,6 +1,15 @@
 import  Counter from './counter'
 import './App.css'
 import Batsman from './Batsman'
+// import Users from './users'
+import { Suspense } from 'react'
+import Friends from './friends'
+
+// const fetchUsers = fetch('https://jsonplaceholder.typicode.com/posts')
+// .then(res => res.json())
+
+// second data fetch kortesi practice hisebe
+const FriendsFetch = fetch('https://jsonplaceholder.typicode.com/users').then(res=>res.json());
 
 function App() {
 
@@ -16,6 +25,15 @@ function App() {
   return (
     <>
       <h1>Vite + React</h1>
+
+      <Suspense fallback={<h3>Loading....</h3>}>
+      <Friends FriendsFetch={FriendsFetch}></Friends>
+      </Suspense>
+        
+        {/* <Suspense fallback={<h3>Loadning.....</h3>}>
+        <Users fetchUsers ={fetchUsers}></Users>
+        </Suspense> */}
+      
       <Batsman></Batsman>
       <Counter></Counter>
 
